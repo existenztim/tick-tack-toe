@@ -1,4 +1,8 @@
 <script setup>
+import {ref, computed} from "vue"
+let playerXscore = 0
+let playerOscore = 0
+
 const CalculateWinner = (board) => {
   const lines = [
     [0, 1, 2],
@@ -24,6 +28,7 @@ const MakeMove = (x, y) => {
 	if (board.value[x][y]) return
 	board.value[x][y] = player.value
 	player.value = player.value === 'X' ? 'O' : 'X'
+  board[a] === "X" ? playerXscore +=1 : playerOscore +=1;
 }
 const ResetGame = () => {
 	board.value = [
@@ -56,10 +61,20 @@ const ResetGame = () => {
 			</div>
 		</div>
 
-		<div class="text-center">
-			<h2 v-if="winner" class="text-6xl font-bold mb-8">Player '{{ winner }}' wins!</h2>
-			<button @click="ResetGame" class="px-4 py-2 bg-pink-500 rounded uppercase font-bold hover:bg-pink-600 duration-300">Reset</button>
+    <div class="flex justify-center p-4 text-xl">
+			<p class ="p-4">
+				PLAYER X: {{playerXscore }}
+			</p>
+			<p class ="p-4">
+				PLAYER O: {{playerOscore }}
+			</p>
 		</div>
+
+
+		<div class="text-center">
+			<h2 v-if="winner" class="text-3xl font-bold mb-8">Player '{{ winner }}' wins!</h2>
+			<button @click="ResetGame" class="px-4 py-2 bg-lime-500 rounded uppercase font-bold hover:bg-blue-400 duration-300">New Round</button>
+		</div>	
 	</main>
 </template>
 
