@@ -51,10 +51,19 @@ const ResetGame = () => {
 </script>
 
 <template>
-  <main class="pt-8 text-center">
+  <main class="pt-8 text-center text-yellow-50">
 		<h1 class="mb-8 text-3xl font-bold uppercase">Tic Tac Toe</h1>
 
 		<h3 class="text-xl mb-4">Player {{ player }}'s turn</h3>
+
+		<div class="flex justify-center p-4 text-xl">
+			<p class ="p-4">
+				PLAYER X: {{playerXscore }}
+			</p>
+			<p class ="p-4">
+				PLAYER O: {{playerOscore }}
+			</p>
+		</div>
 
 		<div class="flex flex-col items-center mb-8">
 			<div 
@@ -70,16 +79,6 @@ const ResetGame = () => {
 				</div>
 			</div>
 		</div>
-
-    <div class="flex justify-center p-4 text-xl">
-			<p class ="p-4">
-				PLAYER X: {{playerXscore }}
-			</p>
-			<p class ="p-4">
-				PLAYER O: {{playerOscore }}
-			</p>
-		</div>
-
 
 		<div class="text-center">
 			<h2 v-if="winner" class="text-3xl font-bold mb-8">Player '{{ winner }}' wins!</h2>
