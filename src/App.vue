@@ -24,6 +24,7 @@ const CalculateWinner = (board) => {
   for (let i = 0; i < winnerCombos.length; i++) {
     const [a, b, c] = winnerCombos[i]
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+		board[a] === "X" ? playerXscore +=1 : playerOscore +=1;
       return board[a]
     }
   }
