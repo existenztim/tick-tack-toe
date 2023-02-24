@@ -29,7 +29,10 @@ const CalculateWinner = (board) => {
   }
   return null
 }
-const winner = computed(() => CalculateWinner(board.value.flat()))
+const winner = computed(() => {
+  return CalculateWinner(board.value.flat());
+});
+
 const MakeMove = (x, y) => {
 	if (winner.value) {
     return;
