@@ -3,8 +3,15 @@ import {ref, computed} from "vue"
 let playerXscore = 0
 let playerOscore = 0
 
+const player = ref('X')
+const board = ref([
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', '']
+])
+
 const CalculateWinner = (board) => {
-  const lines = [
+  const winnerCombos = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -14,8 +21,8 @@ const CalculateWinner = (board) => {
     [0, 4, 8],
     [2, 4, 6]
   ]
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i]
+  for (let i = 0; i < winnerCombos.length; i++) {
+    const [a, b, c] = winnerCombos[i]
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
       return board[a]
     }
@@ -24,11 +31,14 @@ const CalculateWinner = (board) => {
 }
 const winner = computed(() => CalculateWinner(board.value.flat()))
 const MakeMove = (x, y) => {
-	if (winner.value) return
-	if (board.value[x][y]) return
-	board.value[x][y] = player.value
-	player.value = player.value === 'X' ? 'O' : 'X'
-  board[a] === "X" ? playerXscore +=1 : playerOscore +=1;
+	if (winner.value) {
+    return;
+  }
+	if (board.value[x][y]) {
+    return;
+  }
+	board.value[x][y] = player.value;
+	player.value = player.value === 'X' ? 'O' : 'X';
 }
 const ResetGame = () => {
 	board.value = [
